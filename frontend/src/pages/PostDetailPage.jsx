@@ -7,7 +7,7 @@ function PostDetailPage() {
   const { postId } = useParams(); // URL'deki :postId'yi yakalar
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/posts/${postId}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/posts/${postId}`)
       .then(response => response.json())
       .then(data => setPost(data))
       .catch(error => console.error('Yazı detayı çekerken hata:', error));

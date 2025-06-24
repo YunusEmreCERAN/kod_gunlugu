@@ -7,7 +7,7 @@ function HomePage() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/posts')
+    fetch(`${import.meta.env.VITE_API_URL}/api/posts`)
       .then(response => response.json())
       .then(data => setPosts(data))
       .catch(error => console.error('Veri çekerken hata oluştu:', error));

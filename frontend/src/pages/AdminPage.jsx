@@ -16,7 +16,7 @@ function AdminPage() {
 
   // --- FONKSİYONLAR ---
   const fetchPosts = async () => {
-    const response = await fetch('http://localhost:3000/api/posts');
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/posts`);
     const data = await response.json();
     setPosts(data);
   };
@@ -28,14 +28,14 @@ function AdminPage() {
     // Düzenleme modunda mıyız?
     if (editingPostId) {
       // EVET -> PUT isteği at
-      await fetch(`http://localhost:3000/api/posts/${editingPostId}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/posts/${editingPostId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(postData),
       });
     } else {
       // HAYIR -> POST isteği at
-      await fetch('http://localhost:3000/api/posts', {
+      await fetch('${import.meta.env.VITE_API_URL}/api/posts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(postData),
@@ -55,7 +55,7 @@ function AdminPage() {
 
   const handleDelete = async (id) => {
     if (window.confirm('Bu yazıyı silmek istediğinizden emin misiniz?')) {
-      await fetch(`http://localhost:3000/api/posts/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/posts/${id}`, {
         method: 'DELETE',
       });
       fetchPosts(); // Listeyi yenile
