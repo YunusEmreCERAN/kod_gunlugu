@@ -12,7 +12,9 @@ const PORT = 3000;
 // MongoDB'ye bağlanma
 // BURAYI KENDİ BİLGİLERİNİZLE GÜNCELLEYİN!
 const MONGO_URI = process.env.MONGO_URI;
-mongoose.connect(MONGO_URI)
+mongoose.connect(MONGO_URI, {
+  serverSelectionTimeoutMS: 30000 // Zaman aşımı süresini 30 saniyeye çıkarır
+})
   .then(() => console.log('MongoDB veritabanına başarıyla bağlanıldı.'))
   .catch(err => console.error('MongoDB bağlantı hatası:', err));
 
